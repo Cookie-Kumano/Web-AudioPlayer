@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="audio.js"></script>
+    <title>Audio Player</title>
+</head>
+<body>
+
+    <div class="musicbox">
+        <audio id="audiosrc">
+            <source src="src/DEMO.mp3" type="audio/mpeg">
+            <source src="src/DEMO.ogg" type="audio/ogg"> 
+           </audio>
+
+        <div class="musicview">
+            <span id="current">00:00</span>
+            <div class="seekbar"></div>
+            <span id="duration">00:00</span>
+        </div>
+        <div class="musicbuttons">
+            <button class="download">DL</button>
+            <button class="play">Play</button>
+            <div class="volumeview">
+                <p>Volume</p>
+                <input type="range" class="volume" value="0.8" min="0.0" max="1.0" step="0.1">
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
