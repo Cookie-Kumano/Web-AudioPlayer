@@ -67,21 +67,18 @@ function playMusic() {
     });
 }
 
+// 時間を整形して返す
 function playTime (t) {
-    let hms = '';
-    const h = t / 3600 | 0;
-    const m = t % 3600 / 60 | 0;
-    const s = t % 60;
-    const z2 = (v) => {
-      const s = '00' + v;
-      return s.substr(s.length - 2, 2);
+    let resTime = '';
+    t = Math.floor(t)
+
+    if ( 60 <= t) {
+        resTime = Math.floor(t / 60);
+        resTime += ":" + Math.floor(t % 60).toString().padStart(2, "0");
     }
-    if(h != 0){
-      hms = h + ':' + z2(m) + ':' + z2(s);
-    }else if(m != 0){
-      hms = z2(m) + ':' + z2(s);
-    }else{
-      hms = '00:' + z2(s);
+    else {
+        resTime = "00:" + Math.floor(t % 60).toString().padStart(2, "0");
     }
-    return hms;
+
+    return resTime;
   }
