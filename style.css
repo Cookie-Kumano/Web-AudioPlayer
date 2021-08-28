@@ -19,12 +19,50 @@ button:hover {
     width: 600px;
 }
 
+.input-range {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background: linear-gradient(#fafafa, #eee) no-repeat #757575;
+    height: 8px;
+    border-radius: 8px;
+    border: solid 1px #e0e0e0;
+}
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fafafa;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
+}
+::-moz-range-thumb {
+    background: #fafafa;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
+    border: none;
+}
+::-mox-focus-outer {
+    border: 0;
+}
+::-ms-fill-lower {
+    background: #fafafa;
+}
+::ms-thumb {
+    background: #fafafa;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.4);
+    border: none
+}
+
 .seekbar {
     width: 100%;
     height: 8px;
     margin: 0px 8px;
-    border-radius: 4px;
-    background: linear-gradient(#1976D2, #1976D2) no-repeat #eee;
 }
 
 .musicbuttons {
