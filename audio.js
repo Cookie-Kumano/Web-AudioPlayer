@@ -24,6 +24,7 @@ function playMusic(id) {
     let slider_volume = musicbox[id].getElementsByClassName("volume")[0];
 
     // 音量の設定と初期表示作成
+    seekbar.value = 0;
     seekbar.style.backgroundSize = "0%";
     slider_volume.style.backgroundSize = "80%"
     audio.volume = slider_volume.value;
@@ -46,7 +47,7 @@ function playMusic(id) {
         if (!isNaN(duration)) {
             $(musicbox[id]).find("#current").text(playTime(current));
             $(musicbox[id]).find("#duration").text(playTime(duration));
-            seekbar.value = Math.floor((audio.currentTime / audio.duration) * audio.duration);
+            seekbar.value = audio.currentTime;
             seekbar.style.backgroundSize = Math.floor((seekbar.value / seekbar.max) * 100) + "%"; 
         }
     });
