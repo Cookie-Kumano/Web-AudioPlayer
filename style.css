@@ -5,12 +5,9 @@ audio {
 button {
     width: 64px;
     height: 64px;
-    border-radius: 4px;
-    background-color: #f2f2f2;
+    background: transparent;
+    border: none;
     cursor: pointer;
-}
-button:hover {
-    background: #eeeeee;
 }
 
 .musicview {
