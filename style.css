@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 audio {
     display: none;
 }
@@ -5,9 +9,18 @@ audio {
 button {
     width: 64px;
     height: 64px;
+    padding: 0;
     background: transparent;
     border: none;
     cursor: pointer;
+}
+
+.musicbox {
+    height: 10em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 .musicview {
@@ -68,6 +81,20 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.musicbuttons img {
+    width: 64px;
+    height: 64px;
+}
+.mbutton {
+    width: 64px;
+    height: 64px;
+}
+.mbutton:active {
+    background: #e0e0e0;
+    border-radius: 4%;
+    transition: 0.2s;
 }
 
 .volumeview {

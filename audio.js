@@ -33,9 +33,10 @@ function playMusic(id) {
     playButton.addEventListener("click", (e) => {
         if (audio.paused) {
             audio.play();
-            
+            playButton.children[0].src = "/img/Button_Pause.png";
         }   else {
             audio.pause();
+            playButton.children[0].src = "/img/Button_Play.png";
         }
     });
 
@@ -68,6 +69,7 @@ function playMusic(id) {
         seekbar.value = 0;
         seekbar.style.backgroundSize = "0%";
         $(musicbox[id]).find("#current").text("00:00");
+        playButton.children[0].src = "/img/Button_Play.png";
     });
 }
 
