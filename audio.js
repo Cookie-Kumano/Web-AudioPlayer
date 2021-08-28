@@ -15,7 +15,7 @@ function setMusicBox() {
 
     for (let i = 0; i < musicbox.length; i++) {
         musicbox[i].getElementsByClassName("play")[0].addEventListener("click", {name: i, handleEvent: playMusic}, false);
-        musicbox[i].getElementsByClassName("seekbar")[0].style.backgroundSize = "0%"; 
+        musicbox[i].getElementsByClassName("seekbar")[0].value = 0; 
     }
 
 }
@@ -24,6 +24,9 @@ function playMusic() {
     let audio = musicbox[this.name].children[0];
     let seekbar = musicbox[this.name].getElementsByClassName("seekbar")[0];
     let slider_volume = musicbox[this.name].getElementsByClassName("volume")[0];
+
+    let current = Math.floor(audio.currentTime);
+    let duration = Math.round(audio.duration);
 
     // 音量の設定
     audio.volume = slider_volume.value;
@@ -36,27 +39,20 @@ function playMusic() {
 
     // 現在の再生位置を表示
     audio.addEventListener("timeupdate", (e) => {
-        const current = Math.floor(audio.currentTime);
-        const duration = Math.round(audio.duration);
+        seekbar.max = duration;
         if (!isNaN(duration)) {
+            current = Math.floor(audio.currentTime);
             $(musicbox[this.name]).find("#current").text(playTime(current));
             $(musicbox[this.name]).find("#duration").text(playTime(duration));
-            const percent = Math.round((audio.currentTime/audio.duration)*1000)/10;
-            seekbar.style.backgroundSize = percent + "%"; 
+            // const percent = Math.round((audio.currentTime/audio.duration)*1000)/10;
+            // seekbar.style.backgroundSize = percent + "%";
+            seekbar.value = Math.floor((audio.currentTime / audio.duration) * audio.duration) 
         }
     });
 
     // プログレスバーを引っ叩くと再生位置を変えられる
-    seekbar.addEventListener("click", (e) => {
-        const duration = Math.round(audio.duration);
-        if(!isNaN(duration)){
-            const mouse = e.pageX;
-            const rect = seekbar.getBoundingClientRect();
-            const position = rect.left + window.pageXOffset;
-            const offset = mouse - position;
-            const width = rect.right - rect.left;
-            audio.currentTime = Math.round(duration * (offset / width));
-          }
+    seekbar.addEventListener("input", (e) => {
+        audio.currentTime = seekbar.value;
     });
 
     // 音量スライダーの実装
@@ -66,9 +62,8 @@ function playMusic() {
 
     // 再生終了判定
     audio.addEventListener("ended", (e) => {
-        seekbar.style.backgroundSize = "0%";
+        seekbar.value = 0;
         $(musicbox[this.name]).find("#current").text("00:00");
-        $(musicbox[this.name]).find("#duration").text("00:00");
     });
 }
 
