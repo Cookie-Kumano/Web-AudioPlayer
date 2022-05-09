@@ -26,8 +26,8 @@ function playMusic(id) {
     // 音量の設定と初期表示作成
     seekbar.value = 0;
     seekbar.style.backgroundSize = "0%";
-    slider_volume.style.backgroundSize = "80%"
-    audio.volume = slider_volume.value;
+    slider_volume.style.backgroundSize = "85%"
+    audio.volume = audioVolume(slider_volume.value);
     
     // 再生ボタン動作
     playButton.addEventListener("click", (e) => {
@@ -60,8 +60,9 @@ function playMusic(id) {
 
     // 音量スライダーの実装
     slider_volume.addEventListener("input", (e) => {
-        audio.volume = slider_volume.value;
-        slider_volume.style.backgroundSize = Math.floor((slider_volume.value / 1)*100) + "%";
+        audio.volume = audioVolume(slider_volume.value);
+        slider_volume.style.backgroundSize = Math.floor((parseFloat(slider_volume.value) + 21) * 5) + "%";
+        //console.log("Volume: " + audio.volume + "(" + slider_volume.style.backgroundSize + ")");
     })
 
     // 再生終了判定
@@ -87,3 +88,20 @@ function playTime (t) {
     }
     return resTime;
   }
+
+  // 音量を良い感じに調整
+function audioVolume(value) {
+    let volume = 0;
+
+    // スライダー半分以上を逆対数、半分以下を対数
+    if (value > -12){
+        let num = parseFloat(value) + 21;
+        volume = (10 ** (num * 0.1)) * 0.01;
+    }
+    else if (value <= -12) {
+        let num = parseFloat(value) + 22;
+        volume = Math.log10(num) * 0.09;
+    }
+
+    return volume.toFixed(4);
+}

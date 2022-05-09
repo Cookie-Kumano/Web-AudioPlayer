@@ -98,14 +98,16 @@ button {
 }
 
 .volumeview {
-    width: 80px;
+    display: flex;
+    align-items: center;
 }
 
-.volumeview p {
-    font-size: 12px;
-    margin: 2px 0;
-    text-align: center;
+.volumeview img {
+    height: 36px;
+    width: auto;
+    margin: 0 4px 0 0;
 }
+
 
 .volume {
     width: 80px;
